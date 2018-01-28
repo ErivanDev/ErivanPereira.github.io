@@ -73,35 +73,44 @@ var init = function(){
 			}
 }
 
-var move = function () {
-	var delta = clock.getDelta(); // seconds.
-	var rotateAngle = Math.PI / 2 * delta; // pi/2 radians (90 degrees) per second
-	var moveDistance = (32*4) * delta; // 4 pixel per second
+var contador = [];
 
-	if(cube.pulo == true){
-		cube.queda += 16 * delta;
-		cube.vetor = new THREE.Vector3(cube.position.x,cube.position.y - (moveDistance*6) - cube.queda,cube.position.z);
-		if((moveDistance*6)  - cube.queda > 0 && colission(cube,blocks)) cube.position.y += (moveDistance*6) - cube.queda;
+var move = function () {
+	var delta = clock.getDelta(); // seconds
+	var rotateAngle = Math.PI / 2 * delta; // pi/2 radians (90 degrees) per second
+	var moveDistance = (32*4) * delta; // 4 pixel per second	
+	var aux = 0;
+
+	cube.vetor = new THREE.Vector3(cube.position.x,cube.position.y - cube.vspeed * delta,cube.position.z);
+	
+	if(colission(cube,blocks)){  
+		cube.position.y += cube.vspeed * delta;
+		cube.vspeed -= cube.gravidade * delta;
+	}
+	else{
+		cube.vspeed = 0;
 	}
 
-	cube.vetor = new THREE.Vector3(cube.position.x,cube.position.y + (cube.gravidade * delta),cube.position.z);
-	if(colission(cube,blocks)) cube.position.y -= cube.gravidade * delta; else{ cube.queda = 0; cube.pulo = false;}
+	cube.vetor = new THREE.Vector3(cube.position.x,cube.position.y - cube.vspeed * delta,cube.position.z);
 
+	if(keyboard.pressed("space") && !colission(cube,blocks)){
+		cube.vspeed += 180; 
+	}
 	if ( keyboard.pressed("left") ) angulo += rotateAngle;
 	if ( keyboard.pressed("right") ) angulo -= rotateAngle;
 	if ( keyboard.pressed("up") ){
 
 		var movel = false;
 		var auxY = 0;
-		while(auxY < 16 && movel == false){ 
+		while(auxY <= 12 && movel == false){ 
 
-			cube.vetor = new THREE.Vector3(cube.position.x,cube.position.y - auxY,cube.position.z - Math.cos(angulo)*moveDistance * 2);
+			cube.vetor = new THREE.Vector3(cube.position.x,cube.position.y - auxY,cube.position.z - Math.cos(angulo)*moveDistance);
 			if(colission(cube,blocks)){ 
 				cube.position.z += Math.cos(angulo)*moveDistance; 
 				movel = true;
 			}
 
-			cube.vetor = new THREE.Vector3(cube.position.x - Math.sin(angulo)*moveDistance * 2,cube.position.y - auxY,cube.position.z);
+			cube.vetor = new THREE.Vector3(cube.position.x - Math.sin(angulo)*moveDistance,cube.position.y - auxY,cube.position.z);
 			if(colission(cube,blocks)){ 
 				cube.position.x += Math.sin(angulo)*moveDistance; 
 				movel = true;
@@ -115,19 +124,28 @@ var move = function () {
 	}
 	if ( keyboard.pressed("down") ){
 
-		cube.vetor = new THREE.Vector3(cube.position.x,cube.position.y,cube.position.z + Math.cos(angulo)*moveDistance * 2);
-		if(colission(cube,blocks)){ 
-			cube.position.z -= Math.cos(angulo)*moveDistance; 
+		var movel = false;
+		var auxY = 0;
+		while(auxY <= 12 && movel == false){
+
+			cube.vetor = new THREE.Vector3(cube.position.x,cube.position.y - auxY,cube.position.z + Math.cos(angulo)*moveDistance);
+			if(colission(cube,blocks)){ 
+				cube.position.z -= Math.cos(angulo)*moveDistance; 
+				movel = true;
+			}
+
+			cube.vetor = new THREE.Vector3(cube.position.x + Math.sin(angulo)*moveDistance,cube.position.y - auxY,cube.position.z);
+			if(colission(cube,blocks)){ 
+				cube.position.x -= Math.sin(angulo)*moveDistance; 
+				movel = true;
+			}
+
+			if(movel) cube.position.y += auxY; 
+
+			auxY+=4;
+
 		}
 
-		cube.vetor = new THREE.Vector3(cube.position.x + Math.sin(angulo)*moveDistance * 2,cube.position.y,cube.position.z);
-		if(colission(cube,blocks)){ 
-			cube.position.x -= Math.sin(angulo)*moveDistance; 
-		}
-
-	}
-	if ( keyboard.pressed("space") && cube.pulo == false ){
-		cube.pulo = true;
 	}
 	
 	android.position.x = cube.position.x;
@@ -142,7 +160,6 @@ var animate = function () {
 	requestAnimationFrame(animate);
 	if ( cube && android ){ // exists / is loaded
 		move();
-
 		// Alternate morph targets
 
 			time = new Date().getTime() % duration;
@@ -201,28 +218,14 @@ function addModelToScene( geometry, materials ){
 	
 	//geometry = new THREE.SphereGeometry( 32, 12, 12 );
     geometry = new THREE.CylinderGeometry( 12, 12, 32, 16 );
-	material = new THREE.MeshBasicMaterial( {color: 0x000000, alphaMap: 0xFFFFFF } ); // wireframe: true, transparent: true,
+	material = new THREE.MeshFaceMaterial( { } ); // wireframe: true, transparent: true,
 	cube = new THREE.Mesh( geometry, material );
-	cube.position.y = 32;
+	cube.position.y = 64;
 	cube.pulo = false;
 	cube.colidido = true;
-    cube.gravidade = 640;
-	cube.auxgra = 0;
-	cube.queda = 0;
+    cube.gravidade = 400;
+	cube.vspeed = 0;
 	scene.add( cube );
-}
-
-function addModel( geometry, materials ){
-	// for preparing animation
-	//for (var i = 0; i < materials.length; i++)
-	//	materials[i].morphTargets = true;
-		
-	//var material = new THREE.MeshFaceMaterial( materials );
-	var obj = new THREE.Mesh( geometry );
-	//android.scale.set(6,6,6);
-	//android.position.y = 0;
-	scene.add( obj );
-	console.log( obj );
 }
 
 function carregar( mtl , obj, x, z, vezes){
