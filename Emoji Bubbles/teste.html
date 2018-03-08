@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script language="javascript" type="text/javascript" src="p5.js"></script>
+    <script>
+        var pontos = [];
+        var person;
+
+        function setup(){
+            createCanvas(500,800);
+            var requestURL = 'new.json';
+            var request = new XMLHttpRequest();
+            request.open('GET', requestURL);
+            request.responseType = 'json';
+            request.send();
+            request.onload = function(){
+                var p = request.response;
+                var k = 0;
+                for(var i = 0; i<p.length; i++){
+                    pontos.push(new points(p[i].x,p[i].y,p[i].cor));
+                } 
+            }
+        }
+
+        function draw(){
+            background(255);
+            for(var i = 0; i<pontos.length; i++) pontos[i].update();
+        }
+
+        function points(x,y,cor){
+            this.x = x;
+            this.y = y;
+            this.cor = cor;
+            this.xinicial = x;
+            this.yinicial = y;
+            this.update = function(){
+                if(mouseIsPressed){ 
+                    var distancia = dist(mouseX,mouseY,this.x,this.y);
+                    if(distancia <= 50){
+                        var t = coordenadasTan(this.x,this.y);
+                        this.x -= Math.cos(t) * (50 - distancia)/2; 
+                        this.y -= Math.sin(t) * (50 - distancia)/2;
+                    }
+                    else{
+                        this.x = (this.x + this.xinicial)/2; 
+                        this.y = (this.y + this.yinicial)/2; 
+                    }
+                }
+                else{
+                    this.x = (this.x + this.xinicial)/2; 
+                    this.y = (this.y + this.yinicial)/2; 
+                }
+                stroke(this.cor);
+                point(this.x,this.y);
+            }
+        }
+
+        function coordenadasTan(x,y){
+            var yy = mouseY-y;
+            var xx = mouseX-x;
+            if (xx != 0){
+                t = Math.atan(yy/xx);
+                if (xx<0) t+=PI;
+                else if (xx>0 && yy<0) t+=TWO_PI;
+            }
+            return t;
+        }
+
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
