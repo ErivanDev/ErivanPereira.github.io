@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script language="javascript" type="text/javascript" src="p5.js"></script>
+    <script language="javascript" type="text/javascript" src="pontos.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script>
+    var slideIndex = 1;
+    showDivs();
+
+    function plusDivs(n){
+        slideIndex += n;
+        showDivs();
+    }
+
+    function showDivs(){
+        var x = document.getElementsByClassName("mySlides");
+        if(slideIndex > x.length - 1) slideIndex = x.length - 1;   
+        if(slideIndex < 0) slideIndex = 0;
+        for(var i = 0; i < x.length; i++){
+            x[i].style.display = "none"; 
+            x[i].style.marginLeft = "0%";
+        }  
+        if(x[slideIndex] != undefined){
+            x[slideIndex].style.display = "block"; //atual
+            x[slideIndex].className = "mySlides ativo"; //centraliza
+        } 
+        if(x[slideIndex-1] != undefined){
+            x[slideIndex-1].style.display = "block"; //anterior
+            x[slideIndex-1].className = "mySlides inativo";
+        }
+        else if(x[slideIndex] != undefined){
+            x[slideIndex].style.marginLeft = "30%";
+        } 
+        if(x[slideIndex+1] != undefined){
+            x[slideIndex+1].style.display = "block"; //proximo
+            x[slideIndex+1].className = "mySlides inativo";
+        } 
+    }
+
+    function scroll(index){
+        window.scrollTo(0,document.getElementById("main").children[0].offsetTop);
+    }
+    </script>
+    <style>
+    body{
+        background: #ccc;
+    }
+
+    .inativo{
+        width: 30%;
+    }
+
+    .ativo{
+        width: 40%;
+    }
+
+    #banner-canvas{
+        margin: auto;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        /*background-color: #333;*/
+    }
+
+    li {
+        float: left;
+        vertical-align: middle;
+    }
+
+    li a, .dropbtn {
+        display: inline-block;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .pages{
+        position: fixed;
+        right: 0px;
+        bottom: 0px;
+    }
+
+    .redes-sociais{
+        position: fixed;
+        right: 20px;
+        top: 20px;
+    }
+
+    .titulo-redes {
+        color:#333;
+    }
+
+    .titulo-redes:hover {
+        color:#255;
+    }
+
+    .games{
+        width: 100px;
+        height: 100px;
+    }
+    #banner-principal{
+        display: -webkit-flex; /*despois ver o que tá acontecendo*/
+        display:         flex;
+        -webkit-align-items: center;
+                align-items: center;
+        -webkit-justify-content: center;
+                justify-content: center;
+    }
+
+    #page-container{
+        background: #fff;
+        margin: auto;
+        margin-top: 10px;
+        width: 80%;
+    }
+
+    #titulo-page{
+        display: initial;
+    }
+
+    #canvas{
+        display: block;
+    }
+
+    @media screen and (max-width: 600px) {
+        #titulo-page{
+            display: none;
+        }
+    }
+    
+    @media screen and (max-width: 600px) {
+        #banner-principal{
+            display: block;
+        }
+    }
+
+    </style>
+    <title>Portfolio</title>
+</head>
+<body>
+    <div id="page-container">
+        <div id="banner-principal" class="container-fluid">
+            <div id="canvas" class="col-sm-5"></div>
+            <div class="col-sm-7">      
+                <blockquote>
+                Portfolio de Erivan Pereira, Desenvolvedor Iniciante, estudante de Sistemas e Midias Digitais na UFC, tem como maior foco o 
+                desenvolvimento de jogos.
+                </blockquote>
+            </div>
+        </div>
+        <div id="main">
+            <div style="height:500px; margin: 10px; padding:10px; background-color:tomato;color:white;padding:20px;">
+                <h1>Sobre</h1>
+                <p>blablablabla</p>
+            </div>
+
+            <div style="height:500px; overflow: auto; margin: 10px; padding:10px; background-color:tomato;color:white;padding:20px;">
+                <h1>Games</h1>
+                <button class="col-sm-2" onclick="plusDivs(-1)">&#10094;</button>
+                <div class="col-sm-8" style="overflow: auto; margin:auto">
+                    <img class="mySlides inativo" style="float:left;display:none" src="imagens/1f60e.png">
+                    <img class="mySlides inativo" style="float:left" src="imagens/1f609.png">
+                    <img class="mySlides ativo" style="float:left" src="imagens/1f636.png">
+                    <img class="mySlides inativo" style="float:left" src="imagens/1f60f.png">
+                    <img class="mySlides inativo" style="float:left;display:none" src="imagens/1f61d.png">
+                </div>
+                <button class="col-sm-2" onclick="plusDivs(1)">&#10095;</button>
+            </div>
+
+            <div style="height:500px; overflow: auto; margin: 10px; padding:10px; background-color:tomato;color:white;padding:20px;">
+                <h1>Projetos</h1>
+                <p>blablablabla</p>
+            </div>
+
+            <div style="height:500px; overflow: auto; margin: 10px; padding:10px; background-color:tomato;color:white;padding:20px;">
+                <h1>Contatos</h1>
+                <p>blablablabla</p>
+            </div>
+        </div>
+        <div style="text-align:center; padding:10px"> 
+            Made By Erivan Pereira 
+        </div>
+        <div class="pages">
+            <ul>
+            <li style="padding: 20px 20px; background-color: #333;">
+                <a onclick="window.scrollTo(0,0);" href="#home">
+                    <i class="fa fa-home" style="font-size:24px"></i><span id="titulo-page"> Home </span>
+                </a>
+            </li>
+            <li style="padding: 20px 20px; background-color: #255;">
+                <a onclick="window.scrollTo(0,document.getElementById('main').children[0].offsetTop);" href="#news">
+                    <i class="fa fa-info-circle" style="font-size:24px"></i><span id="titulo-page"> Sobre </span>
+                </a>
+            </li>
+            <li style="padding: 20px 20px; background-color: #255;">
+                <a onclick="window.scrollTo(0,document.getElementById('main').children[1].offsetTop);" href="#news">
+                    <i class="fa fa-gamepad" style="font-size:24px"></i><span id="titulo-page"> Games </span>
+                </a>
+            </li>
+            <li style="padding: 20px 20px; background-color: #255;">
+                <a onclick="window.scrollTo(0,document.getElementById('main').children[2].offsetTop);" href="#news">
+                    <i class="fa fa-code" style="font-size:24px"></i><span id="titulo-page"> Projetos </span>
+                </a>
+            </li>
+            <li style="padding: 20px 20px; background-color: #255;">
+                <a onclick="window.scrollTo(0,document.getElementById('main').children[3].offsetTop);" href="#news">
+                    <i class="fa fa-envelope" style="font-size:24px"></i><span id="titulo-page"> Contatos </span>
+                </a>
+            </li>
+            </ul>
+        </div>
+        <div class="redes-sociais">
+            <ul>
+                <li>
+                    <a href="">
+                        <i class="fa fa-twitter-square titulo-redes" id="twitter" style="font-size:42px"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="fa fa-pinterest-square titulo-redes" id="pinterest" style="font-size:42px"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="fa fa-github-square titulo-redes" id="github" style="font-size:42px"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="fa fa-google-plus-square titulo-redes" id="googleplus" style="font-size:42px"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
