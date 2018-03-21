@@ -41,7 +41,7 @@
         });
 
         var player = database.ref('gameOne/player/'+ auth.currentUser.uid);
-        var time = database.ref('gameOne/player/tempo');
+        var time = database.ref('gameOne/time');
 
         console.log( auth.currentUser );
         player.set({
@@ -77,7 +77,7 @@
 
     const sender = function(){
         var player = database.ref('gameOne/player/'+ auth.currentUser.uid);
-        var time = database.ref('gameOne/player/tempo');
+        var time = database.ref('gameOne/time');
         var newData;
         var vez;
 
@@ -96,7 +96,7 @@
                 dados: newData + Math.ceil(Math.random() * 6)
             });
 
-            time.transaction(function(tempo) {
+            time.transaction(function(tempo){
                 tempo.valor++;
                 return tempo;
             });
@@ -110,7 +110,7 @@
 
     const recieve = function(){
         var player = database.ref('gameOne/player');
-        var time = database.ref('gameOne/player/tempo');
+        //var time = database.ref('gameOne/time');
 
         player.on('value',function(data){
             var key = Object.keys( data.val() || {} );
