@@ -22,14 +22,40 @@
     var provider = new firebase.auth.GoogleAuthProvider();
     
     const login = function(){
-        auth.signInWithPopup(provider).then(function(result) {
+        auth.signInWithPopup(provider).then(function(result){
             // This gives you a Google Access Token. You can use it to access the Google API.
             var token = result.credential.accessToken;
             // The signed-in user info.
             user = result.user;
-            console.log(user);
+
+            var player = database.ref('gameOne/player/'+ auth.currentUser.uid);
+            var time = database.ref('gameOne/time');
+            var all = database.ref('gameOne/player'); 
+
+            player.set({
+                username: auth.currentUser.displayName,
+                dados: 0,
+            });
+            time.set({
+                valor: 0
+            });
+            all.on('value',function(data){
+                var key = Object.keys( data.val() || {} );
+                console.log(key);
+                for(i in key){
+                    if( key[i] == auth.currentUser.uid ) idNumber = i; 
+                }
+            });
+            time.on('value',function(tempo){
+                vez = tempo.val().valor;
+            });
+
+            window.onbeforeunload = function(){
+                var player = database.ref('gameOne/player/'+ auth.currentUser.uid);
+                player.set({});
+            }
             // ...
-        }).catch(function(error) {
+        }).catch(function(error){
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -39,20 +65,6 @@
             var credential = error.credential;
             // ...
         });
-
-        var player = database.ref('gameOne/player/'+ auth.currentUser.uid);
-        var time = database.ref('gameOne/time');
-
-        console.log( auth.currentUser );
-        player.set({
-            username: auth.currentUser.displayName,
-            dados: 0,
-        });
-        time.set({
-            valor: 0
-        });
-        
-        player.onDisconnect().update({});
     }
 
     //VEZ DE CADA JOGADOR
@@ -79,23 +91,16 @@
         var player = database.ref('gameOne/player/'+ auth.currentUser.uid);
         var time = database.ref('gameOne/time');
         var newData;
-        var vez;
 
-        time.on('value',function(tempo){
-            vez = tempo.val().valor;
-        });
-
-        if(vez % 4 == idNumber){
+        if(vez % 2 == idNumber){
             player.on('value',function(data){
                 newData = data.val().dados;
                 //console.log(data.val().dados);
             });
-
             player.set({
                 username: auth.currentUser.displayName,
                 dados: newData + Math.ceil(Math.random() * 6)
             });
-
             time.transaction(function(tempo){
                 tempo.valor++;
                 return tempo;
@@ -106,18 +111,13 @@
         }
     }
 
-    var idNumber;
-
     const recieve = function(){
-        var player = database.ref('gameOne/player');
-        //var time = database.ref('gameOne/time');
+        var all = database.ref('gameOne/player'); //all players
 
-        player.on('value',function(data){
+        all.on('value',function(data){
             var key = Object.keys( data.val() || {} );
             for(i in key){
                 players[ key[i] ] = { x: data.val()[ key[i] ].dados, name: data.val()[ key[i] ].username }; 
-                if( key[i] == auth.currentUser.uid ) idNumber = i; //console.log(true);
-                //console.log(data.val()[ key[i] ].dados);
             }
         })
     }();
