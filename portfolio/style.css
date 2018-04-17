@@ -20,6 +20,8 @@ body{
 
 .mySlides{
     cursor: pointer;
+    float: left; 
+    border-radius: 50%;
 }
 
 .icons{
@@ -37,6 +39,48 @@ body{
     align-items: center;
     -webkit-justify-content: center;
     justify-content: center;
+}
+
+.icones{
+    font-size:24px
+}
+
+#partes-container{
+    width: 100%;
+}
+
+#mensage{
+    height: 100px;
+}
+
+.projetos-itens{
+    width: 25%; 
+    float: left;
+}
+
+.pages-itens{
+    padding: 20px 20px; 
+    background-color: #333;
+}
+
+#envie-button{
+    float: right; 
+    font-size: 1em;
+    border:none;
+}
+
+#rodape{
+    text-align: center; 
+    padding: 10px;
+}
+
+#tabela{
+    width: 100%;
+}
+
+#slides-games div{
+    overflow: auto;
+    margin: auto;
 }
 
 .entradas{
@@ -115,6 +159,7 @@ body{
     margin: auto;
     opacity: 0.9;
     filter: alpha(opacity=90) ; /* For IE8 and earlier */
+    overflow: auto; padding: 10px;
 }
 
 #banner-canvas{
@@ -135,6 +180,7 @@ body{
     align-items: center;
     -webkit-justify-content: center;
     justify-content: center;
+    overflow: auto;
 }
 
 ul {
@@ -204,11 +250,36 @@ a:focus, a:hover {
 }
 
 .titulo-redes {
-    color:#333;
+    color: #333;
+    font-size: 42px;
 }
 
 .titulo-redes:hover {
     color:#255;
+}
+
+#tituloGame{
+    margin: 10px;
+}
+
+#informacoes{
+    text-align:center;
+}
+
+#habilidades{
+    text-align:center;
+}
+
+#descricaoGame{
+    margin: 10px;
+}
+
+.linguagens{
+    width:40%;
+}
+
+.estrelas{
+    width:12%;
 }
 
 .games{
