@@ -1,0 +1,98 @@
+<html>
+<head>
+  <!-- PLEASE NO CHANGES BELOW THIS LINE (UNTIL I SAY SO) -->
+  <!--<script language="javascript" type="text/javascript" src="p5.js"></script>
+  <script language="javascript" type="text/javascript" src="paginas.js"></script>
+  <script language="javascript" type="text/javascript" src="menu.js"></script>
+  <script language="javascript" type="text/javascript" src="booter.js"></script>>
+  <!-- OK, YOU CAN MAKE CHANGES BELOW THIS LINE AGAIN -->
+
+  <!-- This line removes any default padding and style. 
+       You might only need one of these values set. -->
+  <!--<script language="javascript" type="text/javascript" src="https://twitter.com/push_service_worker.js"></script>-->
+  <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+  <script id="twitter-wjs" src="https://platform.twitter.com/widgets.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAcm34uIPCDcUQqbWWzU_YT370gSJYdCCI",
+      authDomain: "bubble-friends-a26a8.firebaseapp.com",
+      databaseURL: "https://bubble-friends-a26a8.firebaseio.com",
+      projectId: "bubble-friends-a26a8",
+      storageBucket: "",
+      messagingSenderId: "539801767031"
+    };
+    firebase.initializeApp(config);
+
+    var database = firebase.database();
+
+    function login(){ 
+      var provider = new firebase.auth.TwitterAuthProvider();    
+      ///provider.addScope('email');
+
+      firebase.auth().signInWithPopup(provider).then(function(result){
+        // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
+        // You can use these server side with your app's credentials to access the Twitter API.
+        var token = result.credential.accessToken;
+        var secret = result.credential.secret;
+        // The signed-in user info.
+        user = result.user;
+        console.log(result);
+
+        
+        //https://twitter.com/login?redirect_after_login=%2Fsnoopyrado%2Ffollowers%2Fusers
+        //$.getJSON( "https://twitter.com/snoopyrado/followers/users", function(){
+        //  console.log( "success" );
+        //})
+        
+        //$.get("https://twitter.com/snoopyrado/followers/users", function(data){
+        //  alert("Data: " + data);
+        //});
+
+        //$.get("test.php");
+        $.getScript("test.php");
+        //var requestURL = 'https://api.twitter.com/1.1/followers/ids.json?screen_name=snoopyrado';
+        ///var request = new XMLHttpRequest();
+        //request.open('GET', requestURL);
+        //request.responseType = 'json';
+        //request.send();
+        //request.onload = function(){
+        //    list = request.response;
+        //    console.log(request.response);
+        //}
+      }).catch(function(error){
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+      });
+    }
+
+    (function(){
+      var a = document.createElement("a");
+      a.href = 'view-source:https://twitter.com/snoopyrado/followers/users';
+      a.download = 'test.json';
+      //a.click();
+      //var file = new Blob(a.download.value, {type : 'application/json'});
+      //blob
+      //console.log($(a).data('index'));
+    })()
+    
+  </script>
+  <script language="javascript" type="text/javascript" src="p5.js"></script>
+  <script language="javascript" type="text/javascript" src="jogo01.js"></script>
+  <style> body {padding: 0; margin: 0;} #main {margin: auto;}</style>
+</head>
+
+<body>
+  <div id="main">
+  </div>
+</body>
+</html>
+
+<!--https://code.google.com/archive/p/box2d/downloads-->

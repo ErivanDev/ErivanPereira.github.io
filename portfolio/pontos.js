@@ -48,7 +48,7 @@ function points(x,y,cor){
     this.update = function(){
         //cont++;
         var distancia = dist(mouseX,mouseY,this.x,this.y);
-        if(mouseIsPressed && distancia <=100){ 
+        if(distancia <=100){ 
             var t = coordenadasTan(this.x,this.y);
             this.x -= Math.cos(t) * (100 - distancia)/2; 
             this.y -= Math.sin(t) * (100 - distancia)/2;
