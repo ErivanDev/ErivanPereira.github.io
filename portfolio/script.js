@@ -57,38 +57,23 @@ function plusDivs(n){
 function showDivs(){
     var x = document.getElementsByClassName("mySlides");
     if(slideIndex > x.length - 1) slideIndex = x.length - 1;   
+    
     if(slideIndex < 0) slideIndex = 0;
-    for(var i = 0; i < x.length; i++){
-        x[i].style.display = "none"; 
-        x[i].style.marginLeft = "0%";
-    }  
-    if(x[slideIndex] != undefined){
-        x[slideIndex].style.display = "block"; //atual
-        x[slideIndex].className = "mySlides ativo"; //centraliza
-    } 
-    if(x[slideIndex-1] != undefined){
-        x[slideIndex-1].style.display = "block"; //anterior
-        x[slideIndex-1].className = "mySlides inativo";
-    }
-    else if(x[slideIndex] != undefined){
-        x[slideIndex].style.marginLeft = "30%";
-    } 
-    if(x[slideIndex+1] != undefined){
-        x[slideIndex+1].style.display = "block"; //proximo
-        x[slideIndex+1].className = "mySlides inativo";
-    } 
+    
+    for(var i = 0; i < x.length; i++) x[slideIndex].className = "mySlides invisivel"; 
+    
+    if(x[slideIndex] != undefined) x[slideIndex].className = "mySlides ativo center"; //centraliza
+    
+    if(x[slideIndex-1] != undefined) x[slideIndex-1].className = "mySlides inativo left";
+    else if(x[slideIndex+2] != undefined) x[slideIndex+2].className = "mySlides inativo left";
+
+    if(x[slideIndex+1] != undefined) x[slideIndex+1].className = "mySlides inativo right";
+    else if(x[slideIndex-2] != undefined) x[slideIndex-2].className = "mySlides inativo right";
+  
 }
 
 function scroll(index){
     window.scrollTo(0,document.getElementById("main").children[0].offsetTop);
-}
-
-function show(id){
-    //document.getElementById(id).style.display = 'block';
-}
-
-function tirar(id){
-    // document.getElementById(id).style.display = 'none';
 }
 
 function criarProjetos(){

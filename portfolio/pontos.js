@@ -22,7 +22,6 @@ function setup(){
 }
 
 function draw(){
-    //cont = 0;
     background(255);
     for(var i=0; i<grupo.length; i++) grupo[i].update();
     //console.log(cont);
@@ -32,7 +31,7 @@ function group(cor){
     this.children = [];
     this.cor = cor;
     this.update = function(){
-        fill(34,this.cor,85);
+        fill(this.cor);
         for(var i=0;i<this.children.length;i++){
             this.children[i].update();
         }
@@ -48,7 +47,7 @@ function points(x,y,cor){
     this.update = function(){
         //cont++;
         var distancia = dist(mouseX,mouseY,this.x,this.y);
-        if(distancia <=100){ 
+        if(distancia <=50){ 
             var t = coordenadasTan(this.x,this.y);
             this.x -= Math.cos(t) * (100 - distancia)/2; 
             this.y -= Math.sin(t) * (100 - distancia)/2;
