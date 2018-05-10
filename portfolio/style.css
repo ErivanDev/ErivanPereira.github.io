@@ -470,6 +470,10 @@ a:hover{
     .titulo-page{
         display: none;
     }
+    .pages-itens a {
+        padding: 20px 0px;
+        width: 100%;
+    }
     #canvas{
         width: 80%;
         margin: auto;
