@@ -345,7 +345,7 @@ a:hover{
 
 .redes-sociais{
     position: fixed;
-    right: 20px;
+    right: 10px;
     top: 20px;
 }
 
@@ -504,7 +504,10 @@ a:hover{
         margin-bottom: 30%;
     }
     #slidegames{
-        width: 100%;
+        width: 90%;
+    }
+    .redes-sociais li{
+        float: none;
     }
 }
 
