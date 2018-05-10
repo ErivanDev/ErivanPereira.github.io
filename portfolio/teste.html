@@ -4,10 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script language="javascript" type="text/javascript" src="p5.js"></script>
-    <script language="javascript" type="text/javascript" src="pontos.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Righteous">
@@ -16,6 +12,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Permanent+Marker">
     <link rel="stylesheet" href="style.css">
     <script language="javascript" type="text/javascript" src="script.js"></script>
+    <script language="javascript" type="text/javascript" src="p5.js"></script>
+    <script language="javascript" type="text/javascript" src="pontos.js"></script>
     <title>Portfolio</title>
 </head>
 <body onload="criarProjetos();">
@@ -38,10 +36,10 @@
                         Olá, seja bem-vindo ao meu portfólio, me chamo Erivan Pereira, nasci no dia 
                         1º de Março de 1999, sou natural de Caucaia, Ceará. Estudante de Sistemas e 
                         Mídias Digitais na UFC, curso que escolhi pelo interesse no desenvolvimente de 
-                        jogos digitais, tenho como referencia profissonal Fumito Ueda, Game Designer de 
+                        jogos digitais, tenho como referência profissional Fumito Ueda, Game Designer de 
                         Shadow of the Colossus, jogo o qual gosto muito. Tenho interesse em jogos que 
-                        rodam no navegar, que usam o elemento canvas. Além de jogos desenvolvo
-                        variados projetos universitarios e pessoais.
+                        rodam nos navegadores. Além de jogos desenvolvo variados projetos universitários 
+                        e pessoais.
                     </p>
                 </div>
                 <div class="info">
@@ -112,11 +110,9 @@
             <div class="partes" id="games">
                 <h1>Games</h1>
                 <div id="slidegames">
-                    <div>
                         <img onclick="plusDivs(0)" class="mySlides inativo left" src="imagens/emojibubbles.png">
                         <img onclick="plusDivs(1)" class="mySlides ativo center" src="imagens/jornadadafe.png">
                         <img onclick="plusDivs(2)" class="mySlides inativo right" src="imagens/fortaleza2100.png">
-                    </div>
                 </div>
                 <div id="sobreGame">
                     <h2 id="tituloGame">
@@ -132,13 +128,72 @@
             <div class="partes" id="projetos">
                 <h1>Projetos</h1>
                 <div id="partes-container">  
-                    <div class="projetos-itens" id="parte-1"></div>
-                    <div class="projetos-itens" id="parte-2"></div>
-                    <div class="projetos-itens" id="parte-3"></div>
-                    <div class="projetos-itens" id="parte-4"></div>
+                    <div class="projetos-itens" id="parte-1">
+                        <a href="https://erivanpereira.github.io/game/index.html" target="_blank">
+                            <div class="projetos">
+                                <p> THREE.JS TESTE </p>
+                                <img src="imagens/teste3d.png" alt="THREE.JS: TESTE">
+                            </div> 
+                            <div class="projetos">
+                                <p> PHASER.JS: TESTE ISOMETRICO </p>
+                                <img src="imagens/isometrico.png" alt="PHASER.JS: TESTE ISOMETRICO">
+                            </div> 
+                            <div class="projetos">
+                                <p> NODE.JS: SIMPLE AGARIO </p>
+                                <img src="imagens/agario.png" alt="THREE.JS TESTE">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="projetos-itens" id="parte-2">
+                        <a href="https://erivanpereira.github.io/game/index.html" target="_blank">
+                            <div class="projetos">
+                                <p> PHASER.JS: TESTE ISOMETRICO </p>
+                                <img src="imagens/isometrico.png" alt="PHASER.JS: TESTE ISOMETRICO">
+                            </div> 
+                            <div class="projetos">
+                                <p> NODE.JS: SIMPLE AGARIO </p>
+                                <img src="imagens/agario.png" alt="THREE.JS TESTE">
+                            </div>
+                            <div class="projetos">
+                                <p> THREE.JS TESTE </p>
+                                <img src="imagens/teste3d.png" alt="THREE.JS TESTE">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="projetos-itens" id="parte-3">
+                        <a href="https://erivanpereira.github.io/game/index.html" target="_blank">
+                            <div class="projetos">
+                                <p> NODE.JS: SIMPLE AGARIO </p>
+                                <img src="imagens/agario.png" alt="THREE.JS TESTE">
+                            </div>
+                            <div class="projetos">
+                                <p> THREE.JS TESTE </p>
+                                <img src="imagens/teste3d.png" alt="THREE.JS TESTE">
+                            </div>
+                            <div class="projetos">
+                                <p> PHASER.JS: TESTE ISOMETRICO </p>
+                                <img src="imagens/isometrico.png" alt="PHASER.JS: TESTE ISOMETRICO">
+                            </div> 
+                        </a>
+                    </div>
+                    <div class="projetos-itens" id="parte-4">
+                        <a href="https://erivanpereira.github.io/game/index.html" target="_blank">
+                            <div class="projetos">
+                                <p> THREE.JS TESTE </p>
+                                <img src="imagens/teste3d.png" alt="THREE.JS TESTE">
+                            </div>
+                            <div class="projetos">
+                                <p> PHASER.JS: TESTE ISOMETRICO </p>
+                                <img src="imagens/isometrico.png" alt="PHASER.JS: TESTE ISOMETRICO">
+                            </div> 
+                            <div class="projetos">
+                                <p> NODE.JS: SIMPLE AGARIO </p>
+                                <img src="imagens/agario.png" alt="THREE.JS TESTE">
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
-
             <div class="partes" id="contato">
                 <h1>Contato</h1>
                 <form id="contato">  
@@ -152,7 +207,7 @@
             </div>
         </div>
         <div id="rodape"> 
-            Made By Erivan Pereira 
+            Desenvolvido Por Erivan Pereira 
         </div>
         <div class="pages">
             <ul>
@@ -210,17 +265,3 @@
     </div>
 </body>
 </html>
-
-                        <!-- <div class="projetos" onmouseout="tirar('controles')" onmouseover="show('controles')"  style="position:relative; overflow: auto; text-align:center;">
-                            <img width="100%" height="100px" src="imagens/woman.png" alt="">
-                            <div class="controles">   
-                                <button class="like count">
-                                    <span class="valor">0</span> 
-                                    <i class="fa fa-thumbs-o-up" style="color:green"></i>
-                                </button>
-                                <button class="deslike count">
-                                    <span class="valor">0</span> 
-                                    <i class="fa fa-thumbs-o-down" style="color:red"></i>
-                                </button>
-                            </div>
-                        </div> -->
