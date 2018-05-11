@@ -487,11 +487,6 @@ a:hover{
     #home{
         display: block;
     }
-    .info{
-        width: calc(100% - 20px);
-        float: none;
-        font-size: 1em;
-    } 
     #resumo{
         float: none;
         margin: auto;
@@ -519,6 +514,11 @@ a:hover{
     .projetos{
         font-size: 0.2em;
     }
+    .info{
+        width: calc(100% - 20px);
+        float: none;
+        font-size: 1em;
+    } 
 }
 
 @media screen and (min-width: 1333px) {
