@@ -505,9 +505,6 @@ a:hover{
     #slidegames{
         width: 90%;
     }
-    .redes-sociais li{
-        float: none;
-    }
 }
 
 @media screen and (max-width: 800px) {
@@ -519,6 +516,9 @@ a:hover{
         float: none;
         font-size: 1em;
     } 
+    .redes-sociais li{
+        float: none;
+    }
 }
 
 @media screen and (min-width: 1333px) {
